@@ -1,0 +1,1 @@
+{"version":3,"file":"NutritionService.d.ts","sourceRoot":"","sources":["../../src/services/NutritionService.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAAE,MAAM,gBAAgB,CAAC;AAE3C,qBAAa,gBAAgB;IACzB,OAAO,CAAC,KAAK,CAAc;IAE3B,OAAO,CAAC,IAAI,EAAE,IAAI,GAAG,IAAI;IAKzB,gBAAgB,IAAI,MAAM;IAK1B,SAAS,IAAI,IAAI,EAAE;CAGtB"}
