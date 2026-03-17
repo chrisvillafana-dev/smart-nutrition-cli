@@ -1,10 +1,42 @@
+import * as fs from "fs";
+import * as path from "path";
+import { fileURLToPath} from "url";
 import type { Meal } from "../models/Meal.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export class NutritionService {
     private meals: Meal[] = [];
+    private filePath = path.join(__dirname, "../../data/meals.json");
+
+    constructor () {
+
+        if (fs.existsSync(this.filePath)) {
+            const data = fs.readFileSync(this.filePath, "utf-8");
+            this.meals = JSON.parse(data);
+            console.log(`📂 ${this.meals.length} comidas cargadas desde meals.json`);
+
+        }
+        
+    }
+
+private loadMeals(): void {
+    if (fs.existsSync(this.filePath)) {
+        const data = fs.readFileSync(this.filePath, "utf-8");
+        this.meals = JSON.parse(data);
+    }
+}
+private saveMeals(): void {
+    const data = JSON.stringify(this.meals, null, 2);
+    fs.writeFileSync(this.filePath, data);
+}
 
     addMeal(meal: Meal): void {
         this.meals.push(meal)
+
+        console.log("Guardando comidas en archivo...");
+        this.saveMeals();
         console.log(` Comida registrada: ${meal.name}`);
     }
 
@@ -13,7 +45,9 @@ export class NutritionService {
         
     }
 
-    listMeals(): Meal[] {
+    getMeals(): Meal[] {
         return this.meals;
     }   
+    
 }
+
