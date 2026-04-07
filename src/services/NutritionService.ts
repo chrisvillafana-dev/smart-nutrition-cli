@@ -48,6 +48,34 @@ private saveMeals(): void {
     getMeals(): Meal[] {
         return this.meals;
     }   
+deleteMeal(index: number): void {
+    if (index < 0 || index >= this.meals.length) {
+        console.log(" Índice invalido");
+        return;
+    }
+
+    const [removedMeal] = this.meals.splice(index, 1);
+    if (!removedMeal) {
+        console.log(" Error al eliminar la comida");
+        return;
+    }
+    console.log(`\n ${removedMeal.name} eliminada correctamente`);
+
+    this.saveMeals();
+}
+
+updateMeal(index: number, updatedMeal: Meal): void {
+    if (index < 0 || index >= this.meals.length) {
+      console.log("❌ Índice inválido");
+      return;
+    }
+  
+    this.meals[index] = updatedMeal;
+  
+    console.log(`\n✏️ ${updatedMeal.name} actualizada correctamente`);
+  
+    this.saveMeals();
+  }
     
 }
 
